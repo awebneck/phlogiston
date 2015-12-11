@@ -1,0 +1,16 @@
+[
+{
+  "modid": "phlogiston",
+  "name": "Phlogiston",
+  "description": "Alchemy for Minecraft",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["awebneck"],
+  "credits": "Inspiration from Scott Lynch",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
