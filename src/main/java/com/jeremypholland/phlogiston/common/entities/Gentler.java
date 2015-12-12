@@ -14,7 +14,6 @@ public class Gentler {
     public static void gentleEntity(EntityLiving entity, World worldIn) {
         EntityLiving gentled = getGentledEntity(entity, worldIn);
         if (gentled != null) {
-            System.out.println("GENTLED ENTITY: " + gentled.toString());
             gentled.setPositionAndRotation(entity.posX, entity.posY, entity.posZ, entity.rotationYaw, entity.rotationPitch);
             gentled.setRotationYawHead(entity.getRotationYawHead());
             worldIn.removeEntity(entity);
@@ -24,7 +23,6 @@ public class Gentler {
 
     private static EntityLiving getGentledEntity(EntityLiving entity, World worldIn) {
         if (entity instanceof EntityCow) {
-            System.out.println("GENTLING COW");
             return new EntityGentledCow(worldIn);
         } else if (entity instanceof EntityPig)
             return new EntityGentledPig(worldIn);
@@ -39,7 +37,6 @@ public class Gentler {
         else if (entity instanceof EntityHorse)
             return new EntityGentledHorse(worldIn);
         else if (entity instanceof EntityBat) {
-            System.out.println("GENTLING BAT");
             return new EntityGentledBat(worldIn);
         } else if (entity instanceof EntityVillager)
             return new EntityGentledVillager(worldIn);

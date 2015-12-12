@@ -4,8 +4,10 @@ import com.jeremypholland.phlogiston.common.CommonProxy;
 import com.jeremypholland.phlogiston.common.FMLEventHandler;
 import com.jeremypholland.phlogiston.common.MFEventHandler;
 import com.jeremypholland.phlogiston.common.Recipes;
-import com.jeremypholland.phlogiston.common.blocks.Wraithstone;
+import com.jeremypholland.phlogiston.common.blocks.BlockRetort;
+import com.jeremypholland.phlogiston.common.blocks.BlockWraithstone;
 import com.jeremypholland.phlogiston.common.entities.*;
+import com.jeremypholland.phlogiston.common.tileentities.TileEntityRetort;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -13,6 +15,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -40,6 +43,7 @@ public class Phlogiston {
 
     public static Block wraithstone;
     public static Block burningWraithstone;
+    public static Block retort;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e) {
@@ -49,14 +53,17 @@ public class Phlogiston {
             acDir.mkdirs();
             acDir.mkdir();
         }
-        wraithstone = new Wraithstone(false);
-        GameRegistry.registerBlock(wraithstone, Wraithstone.UL_NAME);
-        burningWraithstone = new Wraithstone(true);
-        GameRegistry.registerBlock(burningWraithstone, null, Wraithstone.UL_BURNING_NAME);
+        wraithstone = new BlockWraithstone(false);
+        GameRegistry.registerBlock(wraithstone, BlockWraithstone.UL_NAME);
+        burningWraithstone = new BlockWraithstone(true);
+        GameRegistry.registerBlock(burningWraithstone, null, BlockWraithstone.UL_BURNING_NAME);
+        retort = new BlockRetort(true);
+        GameRegistry.registerBlock(retort, BlockRetort.UL_NAME);
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent e) {
+        GameRegistry.registerTileEntity(TileEntityRetort.class, TileEntityRetort.UL_NAME);
         EntityRegistry.registerModEntity(EntityGentledBat.class, EntityGentledBat.UL_NAME, 0, this, 80, 1, true);
         EntityRegistry.registerModEntity(EntityGentledChicken.class, EntityGentledChicken.UL_NAME, 1, this, 80, 1, true);
         EntityRegistry.registerModEntity(EntityGentledCow.class, EntityGentledCow.UL_NAME, 2, this, 80, 1, true);
@@ -71,6 +78,7 @@ public class Phlogiston {
         Recipes.addRecipes();
         MinecraftForge.EVENT_BUS.register(new MFEventHandler());
         FMLCommonHandler.instance().bus().register(new FMLEventHandler());
+        FMLInterModComms.sendMessage("Waila", "register", "com.jeremypholland.phlogiston.integration.waila.TileHandler.callbackRegister");
     }
 
     @Mod.EventHandler

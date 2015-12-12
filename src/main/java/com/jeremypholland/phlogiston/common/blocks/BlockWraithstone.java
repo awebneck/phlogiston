@@ -2,7 +2,9 @@ package com.jeremypholland.phlogiston.common.blocks;
 
 import com.jeremypholland.phlogiston.Phlogiston;
 import com.jeremypholland.phlogiston.common.entities.Gentler;
+import com.jeremypholland.phlogiston.common.tileentities.TileEntityRetort;
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -10,6 +12,8 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
@@ -24,14 +28,14 @@ import java.util.Random;
 /**
  * Created by jeremy on 12/6/15.
  */
-public class Wraithstone extends Block {
+public class BlockWraithstone extends Block implements ITileEntityProvider {
     public static final float HARDNESS = 0.5F;
     public static final String UL_NAME = "wraithstone";
     public static final String UL_BURNING_NAME = "burningWraithstone";
 
     private boolean isBurning = false;
 
-    public Wraithstone(boolean isBurning) {
+    public BlockWraithstone(boolean isBurning) {
         super(Material.rock);
         this.isBurning = isBurning;
         setHardness(HARDNESS);
@@ -43,6 +47,11 @@ public class Wraithstone extends Block {
         } else {
             setTickRandomly(true);
         }
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return new TileEntityRetort();
     }
 
     @Override

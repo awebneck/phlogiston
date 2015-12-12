@@ -3,7 +3,8 @@ package com.jeremypholland.phlogiston.client;
 import com.jeremypholland.phlogiston.Phlogiston;
 import com.jeremypholland.phlogiston.client.render.*;
 import com.jeremypholland.phlogiston.common.CommonProxy;
-import com.jeremypholland.phlogiston.common.blocks.Wraithstone;
+import com.jeremypholland.phlogiston.common.blocks.BlockRetort;
+import com.jeremypholland.phlogiston.common.blocks.BlockWraithstone;
 import com.jeremypholland.phlogiston.common.entities.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -27,13 +28,17 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerRenderers() {
-        Item itemWraithstone = GameRegistry.findItem(Phlogiston.MODID, Wraithstone.UL_NAME);
-        ModelResourceLocation itemWraithstoneMRL = new ModelResourceLocation(Phlogiston.MODID + ":" + Wraithstone.UL_NAME, INVENTORY);
+        Item itemWraithstone = GameRegistry.findItem(Phlogiston.MODID, BlockWraithstone.UL_NAME);
+        ModelResourceLocation itemWraithstoneMRL = new ModelResourceLocation(Phlogiston.MODID + ":" + BlockWraithstone.UL_NAME, INVENTORY);
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(itemWraithstone, DEFAULT_ITEM_SUBTYPE, itemWraithstoneMRL);
 
-        Item itemBurningWraithstone = GameRegistry.findItem(Phlogiston.MODID, Wraithstone.UL_BURNING_NAME);
-        ModelResourceLocation itemBurningWraithstoneMRL = new ModelResourceLocation(Phlogiston.MODID + ":" + Wraithstone.UL_BURNING_NAME, INVENTORY);
+        Item itemBurningWraithstone = GameRegistry.findItem(Phlogiston.MODID, BlockWraithstone.UL_BURNING_NAME);
+        ModelResourceLocation itemBurningWraithstoneMRL = new ModelResourceLocation(Phlogiston.MODID + ":" + BlockWraithstone.UL_BURNING_NAME, INVENTORY);
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(itemBurningWraithstone, DEFAULT_ITEM_SUBTYPE, itemBurningWraithstoneMRL);
+
+        Item itemRetort = GameRegistry.findItem(Phlogiston.MODID, BlockRetort.UL_NAME);
+        ModelResourceLocation itemRetortMRL = new ModelResourceLocation(Phlogiston.MODID + ":" + BlockRetort.UL_NAME, INVENTORY);
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(itemRetort, DEFAULT_ITEM_SUBTYPE, itemRetortMRL);
 
         RenderingRegistry.registerEntityRenderingHandler(EntityGentledBat.class, new RenderGentledBat(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityGentledChicken.class, new RenderGentledChicken(Minecraft.getMinecraft().getRenderManager()));

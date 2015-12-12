@@ -1,3 +1,11 @@
 tile.wraithstone.name=Wraithstone
 tile.burningWraithstone.name=Wraithstone
+entity.phlogiston.gentledBat.name=Gentled Bat
+entity.phlogiston.gentledChicken.name=Gentled Chicken
 entity.phlogiston.gentledCow.name=Gentled Cow
+entity.phlogiston.gentledHorse.name=Gentled Horse
+entity.phlogiston.gentledOcelot.name=Gentled Ocelot
+entity.phlogiston.gentledPig.name=Gentled Pig
+entity.phlogiston.gentledSheep.name=Gentled Sheep
+entity.phlogiston.gentledVillager.name=Gentled Villager
+entity.phlogiston.gentledWolf.name=Gentled Wolf
