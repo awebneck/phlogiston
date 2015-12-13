@@ -1,6 +1,7 @@
 package com.jeremypholland.phlogiston.integration.waila;
 
 import com.jeremypholland.phlogiston.Phlogiston;
+import com.jeremypholland.phlogiston.common.blocks.BlockSifterChute;
 import com.jeremypholland.phlogiston.common.blocks.BlockWraithstone;
 import mcp.mobius.waila.api.*;
 import net.minecraft.item.ItemStack;
@@ -18,6 +19,7 @@ public class TileHandler implements IWailaDataProvider {
     public static void callbackRegister(IWailaRegistrar register) {
         TileHandler instance = new TileHandler();
         register.registerStackProvider(instance, BlockWraithstone.class);
+        register.registerStackProvider(instance, BlockSifterChute.class);
     }
 
     @Override
@@ -49,6 +51,8 @@ public class TileHandler implements IWailaDataProvider {
     public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
         if (accessor.getBlock() == Phlogiston.burningWraithstone)
             return new ItemStack(Phlogiston.wraithstone);
+        else if (accessor.getBlock() == Phlogiston.sifterChuteContinuous)
+            return new ItemStack(Phlogiston.sifterChute);
         else
             return accessor.getStack();
     }

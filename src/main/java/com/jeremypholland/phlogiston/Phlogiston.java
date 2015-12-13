@@ -4,11 +4,18 @@ import com.jeremypholland.phlogiston.common.CommonProxy;
 import com.jeremypholland.phlogiston.common.FMLEventHandler;
 import com.jeremypholland.phlogiston.common.MFEventHandler;
 import com.jeremypholland.phlogiston.common.Recipes;
-import com.jeremypholland.phlogiston.common.blocks.BlockRetort;
-import com.jeremypholland.phlogiston.common.blocks.BlockWraithstone;
+import com.jeremypholland.phlogiston.common.blocks.*;
 import com.jeremypholland.phlogiston.common.entities.*;
+import com.jeremypholland.phlogiston.common.items.ItemAlchemicalPestle;
+import com.jeremypholland.phlogiston.common.items.ItemPowderedCinnabar;
+import com.jeremypholland.phlogiston.common.items.ItemPowderedIron;
+import com.jeremypholland.phlogiston.common.items.ItemPowderedSilver;
+import com.jeremypholland.phlogiston.common.tileentities.TileEntityAlchemicalMortar;
 import com.jeremypholland.phlogiston.common.tileentities.TileEntityRetort;
+import com.jeremypholland.phlogiston.common.tileentities.TileEntitySifter;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockOre;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -44,26 +51,64 @@ public class Phlogiston {
     public static Block wraithstone;
     public static Block burningWraithstone;
     public static Block retort;
+    public static Block alMortar;
+    public static Block sifterChute;
+    public static Block sifterChuteContinuous;
+    public static Block sifterBasin;
+    public static Block sifterFunnel;
+    public static Item alPestle;
+    public static Item powderedIron;
+    public static Item powderedCinnabar;
+    public static Item powderedSilver;
+    public static Block cinnabarOre;
+    public static Block silverOre;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e) {
         syncConfig(new Configuration(e.getSuggestedConfigurationFile()));
+
         acDir = new File(e.getModConfigurationDirectory().getParentFile(), "/Phlogiston/");
         if (!acDir.exists()) {
             acDir.mkdirs();
             acDir.mkdir();
         }
+
+        powderedIron = new ItemPowderedIron();
+        GameRegistry.registerItem(powderedIron, ItemPowderedIron.UL_NAME);
+        powderedCinnabar = new ItemPowderedCinnabar();
+        GameRegistry.registerItem(powderedCinnabar, ItemPowderedCinnabar.UL_NAME);
+        powderedSilver = new ItemPowderedSilver();
+        GameRegistry.registerItem(powderedSilver, ItemPowderedSilver.UL_NAME);
+        alPestle = new ItemAlchemicalPestle();
+        GameRegistry.registerItem(alPestle, ItemAlchemicalPestle.UL_NAME);
+
+        silverOre = new BlockSilverOre();
+        GameRegistry.registerBlock(silverOre, BlockSilverOre.UL_NAME);
+        cinnabarOre = new BlockCinnabarOre();
+        GameRegistry.registerBlock(cinnabarOre, BlockCinnabarOre.UL_NAME);
         wraithstone = new BlockWraithstone(false);
         GameRegistry.registerBlock(wraithstone, BlockWraithstone.UL_NAME);
         burningWraithstone = new BlockWraithstone(true);
         GameRegistry.registerBlock(burningWraithstone, null, BlockWraithstone.UL_BURNING_NAME);
-        retort = new BlockRetort(true);
+        retort = new BlockRetort();
         GameRegistry.registerBlock(retort, BlockRetort.UL_NAME);
+        alMortar = new BlockAlchemicalMortar();
+        GameRegistry.registerBlock(alMortar, BlockAlchemicalMortar.UL_NAME);
+        sifterChute = new BlockSifterChute(false);
+        GameRegistry.registerBlock(sifterChute, BlockSifterChute.UL_NAME);
+        sifterChuteContinuous = new BlockSifterChute(true);
+        GameRegistry.registerBlock(sifterChuteContinuous, null, BlockSifterChute.UL_CONTINUOUS_NAME);
+        sifterBasin = new BlockSifterBasin();
+        GameRegistry.registerBlock(sifterBasin, BlockSifterBasin.UL_NAME);
+        sifterFunnel = new BlockSifterFunnel();
+        GameRegistry.registerBlock(sifterFunnel, BlockSifterFunnel.UL_NAME);
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent e) {
         GameRegistry.registerTileEntity(TileEntityRetort.class, TileEntityRetort.UL_NAME);
+        GameRegistry.registerTileEntity(TileEntityAlchemicalMortar.class, TileEntityAlchemicalMortar.UL_NAME);
+        GameRegistry.registerTileEntity(TileEntitySifter.class, TileEntitySifter.UL_NAME);
         EntityRegistry.registerModEntity(EntityGentledBat.class, EntityGentledBat.UL_NAME, 0, this, 80, 1, true);
         EntityRegistry.registerModEntity(EntityGentledChicken.class, EntityGentledChicken.UL_NAME, 1, this, 80, 1, true);
         EntityRegistry.registerModEntity(EntityGentledCow.class, EntityGentledCow.UL_NAME, 2, this, 80, 1, true);

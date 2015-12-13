@@ -1,5 +1,10 @@
 tile.wraithstone.name=Wraithstone
-tile.burningWraithstone.name=Wraithstone
+tile.burning_wraithstone.name=Wraithstone
+tile.alchemical_mortar.name=Alchemical Mortar
+tile.retort.name=Retort
+tile.sifter_chute.name=Sifter Chute
+tile.sifter_basin.name=Sifter Basin
+tile.sifter_funnel.name=Sifter Funnel
 entity.phlogiston.gentledBat.name=Gentled Bat
 entity.phlogiston.gentledChicken.name=Gentled Chicken
 entity.phlogiston.gentledCow.name=Gentled Cow

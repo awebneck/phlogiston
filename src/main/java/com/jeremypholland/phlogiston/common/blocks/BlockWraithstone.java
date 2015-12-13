@@ -31,7 +31,7 @@ import java.util.Random;
 public class BlockWraithstone extends Block implements ITileEntityProvider {
     public static final float HARDNESS = 0.5F;
     public static final String UL_NAME = "wraithstone";
-    public static final String UL_BURNING_NAME = "burningWraithstone";
+    public static final String UL_BURNING_NAME = "burning_wraithstone";
 
     private boolean isBurning = false;
 

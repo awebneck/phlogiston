@@ -1,5 +1,5 @@
 {
-  "parent": "phlogiston:block/burningWraithstone",
+  "parent": "phlogiston:block/cinnabar_ore",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],
