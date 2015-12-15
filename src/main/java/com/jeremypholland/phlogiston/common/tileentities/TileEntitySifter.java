@@ -3,10 +3,6 @@ package com.jeremypholland.phlogiston.common.tileentities;
 import com.jeremypholland.phlogiston.Phlogiston;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 
 /**
@@ -35,14 +31,21 @@ public class TileEntitySifter extends TileEntityBase {
     protected void readCustomNBT(NBTTagCompound compound) {
         numChutes = compound.getInteger("numChutes");
         hasScreen = compound.getBoolean("hasScreen");
-        crankFacing = EnumFacing.values()[compound.getInteger("crankFacing")];
+        int facing = compound.getInteger("crankFacing");
+        if (facing == -1)
+            crankFacing = null;
+        else
+            crankFacing = EnumFacing.values()[facing];
     }
 
     @Override
     protected void writeCustomNBT(NBTTagCompound compound) {
         compound.setInteger("numChutes", numChutes);
         compound.setBoolean("hasScreen", hasScreen);
-        compound.setInteger("hasCrank", crankFacing.getIndex());
+        if (crankFacing == null)
+            compound.setInteger("crankFacing", -1);
+        else
+            compound.setInteger("crankFacing", crankFacing.getIndex());
     }
 
     public boolean setScreen(ItemStack stack) {
