@@ -2,14 +2,16 @@ package com.jeremypholland.phlogiston.client;
 
 import com.jeremypholland.phlogiston.Phlogiston;
 import com.jeremypholland.phlogiston.client.render.*;
+import com.jeremypholland.phlogiston.client.render.tesr.RenderAlchemicalMortar;
+import com.jeremypholland.phlogiston.client.render.tesr.RenderSifter;
+import com.jeremypholland.phlogiston.client.render.tesr.RenderSifterCrank;
 import com.jeremypholland.phlogiston.common.CommonProxy;
 import com.jeremypholland.phlogiston.common.blocks.*;
 import com.jeremypholland.phlogiston.common.entities.*;
-import com.jeremypholland.phlogiston.common.items.ItemAlchemicalPestle;
-import com.jeremypholland.phlogiston.common.items.ItemPowderedCinnabar;
-import com.jeremypholland.phlogiston.common.items.ItemPowderedIron;
-import com.jeremypholland.phlogiston.common.items.ItemPowderedSilver;
+import com.jeremypholland.phlogiston.common.items.*;
 import com.jeremypholland.phlogiston.common.tileentities.TileEntityAlchemicalMortar;
+import com.jeremypholland.phlogiston.common.tileentities.TileEntitySifter;
+import com.jeremypholland.phlogiston.common.tileentities.TileEntitySifterCrank;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -65,9 +67,17 @@ public class ClientProxy extends CommonProxy {
         ModelResourceLocation itemSifterFunnelMRL = new ModelResourceLocation(Phlogiston.MODID + ":" + BlockSifterFunnel.UL_NAME, INVENTORY);
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(itemSifterFunnel, DEFAULT_ITEM_SUBTYPE, itemSifterFunnelMRL);
 
+        Item itemSifterCrank = GameRegistry.findItem(Phlogiston.MODID, BlockSifterCrank.UL_NAME);
+        ModelResourceLocation itemSifterCrankMRL = new ModelResourceLocation(Phlogiston.MODID + ":" + BlockSifterCrank.UL_NAME, INVENTORY);
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(itemSifterCrank, DEFAULT_ITEM_SUBTYPE, itemSifterCrankMRL);
+
         Item itemAlchemicalPestle = GameRegistry.findItem(Phlogiston.MODID, ItemAlchemicalPestle.UL_NAME);
         ModelResourceLocation itemAlchemicalPestleMRL = new ModelResourceLocation(Phlogiston.MODID + ":" + ItemAlchemicalPestle.UL_NAME, INVENTORY);
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(itemAlchemicalPestle, DEFAULT_ITEM_SUBTYPE, itemAlchemicalPestleMRL);
+
+        Item itemAlchemicalScreen = GameRegistry.findItem(Phlogiston.MODID, ItemAlchemicalScreen.UL_NAME);
+        ModelResourceLocation itemAlchemicalScreenMRL = new ModelResourceLocation(Phlogiston.MODID + ":" + ItemAlchemicalScreen.UL_NAME, INVENTORY);
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(itemAlchemicalScreen, DEFAULT_ITEM_SUBTYPE, itemAlchemicalScreenMRL);
 
         Item itemCinnabarOre = GameRegistry.findItem(Phlogiston.MODID, BlockCinnabarOre.UL_NAME);
         ModelResourceLocation itemCinnabarOreMRL = new ModelResourceLocation(Phlogiston.MODID + ":" + BlockCinnabarOre.UL_NAME, INVENTORY);
@@ -100,5 +110,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGentledWolf.class, new RenderGentledWolf(Minecraft.getMinecraft().getRenderManager()));
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAlchemicalMortar.class, new RenderAlchemicalMortar());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySifter.class, new RenderSifter());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySifterCrank.class, new RenderSifterCrank());
     }
 }

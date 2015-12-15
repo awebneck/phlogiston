@@ -1,6 +1,5 @@
 {
   "variants": {
-    "normal": { "model": "phlogiston:sifter_funnel" },
-    "with_screen": { "model": "phlogiston:sifter_funnel_with_screen" }
+    "normal": { "model": "phlogiston:sifter_funnel" }
   }
 }

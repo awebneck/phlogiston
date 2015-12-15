@@ -6,13 +6,11 @@ import com.jeremypholland.phlogiston.common.MFEventHandler;
 import com.jeremypholland.phlogiston.common.Recipes;
 import com.jeremypholland.phlogiston.common.blocks.*;
 import com.jeremypholland.phlogiston.common.entities.*;
-import com.jeremypholland.phlogiston.common.items.ItemAlchemicalPestle;
-import com.jeremypholland.phlogiston.common.items.ItemPowderedCinnabar;
-import com.jeremypholland.phlogiston.common.items.ItemPowderedIron;
-import com.jeremypholland.phlogiston.common.items.ItemPowderedSilver;
+import com.jeremypholland.phlogiston.common.items.*;
 import com.jeremypholland.phlogiston.common.tileentities.TileEntityAlchemicalMortar;
 import com.jeremypholland.phlogiston.common.tileentities.TileEntityRetort;
 import com.jeremypholland.phlogiston.common.tileentities.TileEntitySifter;
+import com.jeremypholland.phlogiston.common.tileentities.TileEntitySifterCrank;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.item.Item;
@@ -56,7 +54,9 @@ public class Phlogiston {
     public static Block sifterChuteContinuous;
     public static Block sifterBasin;
     public static Block sifterFunnel;
+    public static Block sifterCrank;
     public static Item alPestle;
+    public static Item alScreen;
     public static Item powderedIron;
     public static Item powderedCinnabar;
     public static Item powderedSilver;
@@ -81,6 +81,8 @@ public class Phlogiston {
         GameRegistry.registerItem(powderedSilver, ItemPowderedSilver.UL_NAME);
         alPestle = new ItemAlchemicalPestle();
         GameRegistry.registerItem(alPestle, ItemAlchemicalPestle.UL_NAME);
+        alScreen = new ItemAlchemicalScreen();
+        GameRegistry.registerItem(alScreen, ItemAlchemicalScreen.UL_NAME);
 
         silverOre = new BlockSilverOre();
         GameRegistry.registerBlock(silverOre, BlockSilverOre.UL_NAME);
@@ -102,6 +104,8 @@ public class Phlogiston {
         GameRegistry.registerBlock(sifterBasin, BlockSifterBasin.UL_NAME);
         sifterFunnel = new BlockSifterFunnel();
         GameRegistry.registerBlock(sifterFunnel, BlockSifterFunnel.UL_NAME);
+        sifterCrank = new BlockSifterCrank();
+        GameRegistry.registerBlock(sifterCrank, BlockSifterCrank.UL_NAME);
     }
 
     @Mod.EventHandler
@@ -109,6 +113,7 @@ public class Phlogiston {
         GameRegistry.registerTileEntity(TileEntityRetort.class, TileEntityRetort.UL_NAME);
         GameRegistry.registerTileEntity(TileEntityAlchemicalMortar.class, TileEntityAlchemicalMortar.UL_NAME);
         GameRegistry.registerTileEntity(TileEntitySifter.class, TileEntitySifter.UL_NAME);
+        GameRegistry.registerTileEntity(TileEntitySifterCrank.class, TileEntitySifterCrank.UL_NAME);
         EntityRegistry.registerModEntity(EntityGentledBat.class, EntityGentledBat.UL_NAME, 0, this, 80, 1, true);
         EntityRegistry.registerModEntity(EntityGentledChicken.class, EntityGentledChicken.UL_NAME, 1, this, 80, 1, true);
         EntityRegistry.registerModEntity(EntityGentledCow.class, EntityGentledCow.UL_NAME, 2, this, 80, 1, true);

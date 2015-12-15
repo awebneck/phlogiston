@@ -1,16 +1,11 @@
 package com.jeremypholland.phlogiston.common.tileentities;
 
 import com.jeremypholland.phlogiston.Phlogiston;
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
-import net.minecraft.tileentity.TileEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,8 +64,6 @@ public class TileEntityAlchemicalMortar extends TileEntityBase implements IUpdat
     }
 
     public boolean fill(ItemStack stack) {
-        System.out.println("ATTEMPTING TO FILL: " + filledWith);
-        System.out.println("GRINDABLE: " + isGrindable(stack));
         if (filledWith == -1 && isGrindable(stack)) {
             filledWith = Item.getIdFromItem(stack.getItem());
             ticksFilled = 0;

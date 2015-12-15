@@ -40,11 +40,6 @@ public class BlockAlchemicalMortar extends Block implements ITileEntityProvider 
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
         TileEntityAlchemicalMortar team = (TileEntityAlchemicalMortar)worldIn.getTileEntity(pos);
         if (team != null) {
-            if (!worldIn.isRemote) {
-                System.out.println("IS SERVER");
-            } else {
-                System.out.println("IS CLIENT");
-            }
             if (!team.isCoolingDown() && !worldIn.isRemote) {
                 ItemStack equipped = playerIn.getCurrentEquippedItem();
                 if (playerIn.isSneaking()) {
@@ -56,7 +51,6 @@ public class BlockAlchemicalMortar extends Block implements ITileEntityProvider 
                     return team.grind(equipped);
                 } else {
                     ItemStack item = playerIn.getCurrentEquippedItem();
-                    System.out.println("FILLING MORTAR");
                     return (item != null &&
                             team.fill(item));
                 }
